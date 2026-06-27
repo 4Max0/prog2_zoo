@@ -3,12 +3,46 @@
  */
 package zoo;
 
+import zoo.Enclosure.*;
+import zoo.animal.*;
+
 public class Main {
   public String getGreeting() {
     return "Hello World!";
   }
 
   public static void main(String[] args) {
-    System.out.println(new Main().getGreeting());
+    Zoo zoo = new Zoo();
+
+    MammalHouse mammalHouse = new MammalHouse("Mammals 1");
+    Aquarium aquarium = new Aquarium("Aquarium 1");
+
+    Ragdoll catNekoChan = new Ragdoll("Neko Chan");
+    Lemur lemurKJ = new Lemur("KJ");
+    Trout troutNemo = new Trout("Nemo");
+
+    mammalHouse.add(catNekoChan);
+    mammalHouse.add(lemurKJ);
+    aquarium.add(troutNemo);
+
+    zoo.addEnclosure(mammalHouse);
+    zoo.addEnclosure(aquarium);
+
+    System.out.println(zoo.summary());
+
+    System.out.println("All Animals:");
+    zoo.getAllAnimals().forEach(System.out::println);
+
+    System.out.println("\nOnly Mammals:");
+    zoo.getAllMammals().forEach(System.out::println);
+
+    System.out.println("\nAquarium found:");
+    System.out.println(zoo.findEnclosureByName("Aquarium"));
+
+    System.out.println("\nCount of animal types:");
+    System.out.println(zoo.countAnimalsByType());
+
+    System.out.println("\nEnclosures that are too full:");
+    System.out.println(zoo.getOvercrowdedEnclosures(1));
   }
 }

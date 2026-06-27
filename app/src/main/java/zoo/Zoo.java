@@ -11,24 +11,24 @@ import zoo.animal.Animal;
 import zoo.animal.Mammal;
 
 public class Zoo {
-  private final List<Enclosure<Animal>> enclosures;
+  private final List<Enclosure<? extends Animal>> enclosures;
 
   public Zoo() {
     this.enclosures = new ArrayList<>();
   }
 
   // Why return: represents the result of adding the item to the enclosure
-  public boolean addEnclosure(Enclosure<Animal> enclosure) {
-    return this.enclosures.add(enclosure);
+  public boolean addEnclosure(Enclosure<? extends Animal> enclosure) {
+    return enclosures.add(enclosure);
   }
 
   // Why return: Gives all the Enclosures
-  public List<Enclosure<Animal>> getEnclosures() {
-    return List.copyOf(this.enclosures);
+  public List<Enclosure<? extends Animal>> getEnclosures() {
+    return List.copyOf(enclosures);
   }
 
   // Why return: Optional avoids null and forces caller to handle "not found"
-  public Optional<Enclosure<Animal>> findEnclosureByName(String name) {
+  public Optional<Enclosure<? extends Animal>> findEnclosureByName(String name) {
     return this.enclosures.stream()
         // 1. We use stream to go through all enclosures
         // 2. We check if the enclosure fits the provided name, else we return null
@@ -37,7 +37,7 @@ public class Zoo {
   }
 
   // why return: it is a list of animals we want
-  public List<Animal> getAllAnimals() {
+  public List<? extends Animal> getAllAnimals() {
     // 1. We use stream to go through all enclosures and get all inhabitants
     // 2. Use flatMap to turn all the Animal Lists into a single one
     // 3. We then collect the result as a List and return
@@ -59,7 +59,7 @@ public class Zoo {
   }
 
   // why return: gives a flexible List of animals
-  public List<Animal> getAnimalsByPredicate(Predicate<Animal> predicate) {
+  public List<? extends Animal> getAnimalsByPredicate(Predicate<Animal> predicate) {
     // 1. We use stream to go through all enclosures
     // 2. Use flatMap to turn all the Animal Lists into a single one
     // 3. We filter vor the chosen Predicate
@@ -81,7 +81,7 @@ public class Zoo {
   }
 
   // why return: We want the overcrowded Enclosures so we return a list of Enclosures
-  public List<Enclosure<Animal>> getOvercrowdedEnclosures(int max) {
+  public List<Enclosure<? extends Animal>> getOvercrowdedEnclosures(int max) {
     // 1. We use stream to go through all enclosures
     // 2. We filter for all enclosures where the inhabitants-count is over the provided max
     // 3. We collect the matches
