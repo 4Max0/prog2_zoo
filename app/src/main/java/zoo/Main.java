@@ -3,6 +3,8 @@
  */
 package zoo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import zoo.Enclosure.*;
 import zoo.animal.*;
 
@@ -12,6 +14,15 @@ public class Main {
   }
 
   public static void main(String[] args) {
+    // DEMO: This is how you can switch the logging level
+    Level level = Level.WARNING;
+    Logger logger = Logger.getLogger(Zoo.class.getName());
+    // set log level
+    logger.setLevel(level);
+    for (var h : logger.getParent().getHandlers()) {
+      h.setLevel(Level.FINE);
+    }
+
     Zoo zoo = new Zoo();
 
     MammalHouse mammalHouse = new MammalHouse("Mammals 1");
@@ -36,8 +47,12 @@ public class Main {
     System.out.println("\nOnly Mammals:");
     zoo.getAllMammals().forEach(System.out::println);
 
-    System.out.println("\nAquarium found:");
+    // Wrong name
+    System.out.println("\nAquarium not found:");
     System.out.println(zoo.findEnclosureByName("Aquarium"));
+
+    System.out.println("\nAquarium found:");
+    System.out.println(zoo.findEnclosureByName("Aquarium 1"));
 
     System.out.println("\nCount of animal types:");
     System.out.println(zoo.countAnimalsByType());
