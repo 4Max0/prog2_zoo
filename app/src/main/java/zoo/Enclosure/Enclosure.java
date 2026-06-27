@@ -20,15 +20,15 @@ public class Enclosure<T extends Animal> {
     return this.name;
   }
 
-  boolean add(T animal) {
+  public boolean add(T animal) {
     return inhabitants.add(animal);
   }
 
-  boolean remove(T animal) {
+  public boolean remove(T animal) {
     return inhabitants.remove(animal);
   }
 
-  List<T> getInhabitants() {
+  public List<T> getInhabitants() {
     return List.copyOf(inhabitants);
   }
 }

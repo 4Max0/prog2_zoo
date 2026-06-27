@@ -2,9 +2,8 @@ package zoo.Enclosure;
 
 import zoo.animal.Reptile;
 
-public class Terrarium extends Enclosure<Reptile>{
-
-    public Terrarium(String name) {
-        super(name);
-    }
+public class Terrarium extends Enclosure<Reptile> {
+  public Terrarium(String name) {
+    super(name);
+  }
 }
