@@ -42,6 +42,9 @@ public class Main {
     System.out.println("\nCount of animal types:");
     System.out.println(zoo.countAnimalsByType());
 
+    System.out.println("\ngetting animal by predicate:");
+    zoo.getAnimalsByPredicate(animal -> animal instanceof Mammal).forEach(System.out::println);
+
     System.out.println("\nEnclosures that are too full:");
     System.out.println(zoo.getOvercrowdedEnclosures(1));
   }
