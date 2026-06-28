@@ -53,9 +53,9 @@ public class Zoo {
       logger.log(WARNING, "Enclosure {0} not found", new Object[] {name});
     } else {
       logger.log(
-        FINE,
-        "Found enclosure {0} with {1} animals",
-        new Object[] {name, result.get().getInhabitants().size()});
+          FINE,
+          "Found enclosure {0} with {1} animals",
+          new Object[] {name, result.get().getInhabitants().size()});
     }
     return result;
   }
